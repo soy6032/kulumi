@@ -51,7 +51,7 @@ export const actions = {
   async clientAuth ({ commit, state }) {
     const { data } = await this.$axios.get('/client/checkSession');
     if (!data.items) {
-      //commit('LOGOUT');
+      commit('LOGOUT');
       this.$router.push('/login');
     }
   }
