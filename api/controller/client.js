@@ -19,15 +19,12 @@ let authList = [];
 
 // 세선체크
 exports.checkSession = async (req, res, next) => {
-    alert("checksession1");
     resObj = obj_init(resObj);
     if(req.session.token) {
-        alert("checksession2");
         let decoded = await auth.decodeToken(req.session.token);
         //console.log(decoded);
         resObj.items = decoded.id;
     } else {
-        alert("checksession3");
         req.session.destroy();
         resObj.items = false;
     }
