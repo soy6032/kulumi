@@ -78,7 +78,7 @@ export default {
             this.alertCon = res.msg;
             if (res.items) { 
               if (this.$store.state.projectUrl) {
-                //console.log(this.$store.state.projectUrl);
+                console.log(this.$store.state.projectUrl);
                 this.$router.push(`${this.$store.state.projectUrl}`);
               } else {
                 this.$router.push('/'); 
