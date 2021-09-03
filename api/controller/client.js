@@ -168,7 +168,7 @@ exports.signup = async (req, res, next) => {
 // 로그인
 exports.login = async (req, res, next) => {
     resObj = obj_init(resObj);
-    console.log("1번");
+    console.log("1 . "+req.session.token);
     const params = [
         req.body.email,
         req.body.pw
@@ -176,20 +176,20 @@ exports.login = async (req, res, next) => {
     const query = "select idx, email from users where email = ? and password = PASSWORD(?)";
     const result = await db.conn(query, params);
     if(!result) {
-        console.log("2번");
+        console.log("2 . "+req.session.token);
         resObj.state = false;
         resObj.msg = "잠시후 다시 시도하세요.";
     } else {
-        console.log("3번");
+        console.log("3 . "+req.session.token);
         resObj.state = true;
         if(result.length === 1) {
-            console.log("4번");
+            console.log("4 . "+req.session.token);
             let token = auth.createToken(result[0].email);
             resObj.items = result;
             resObj.msg = "로그인 되었습니다.";
             req.session.token = token;
         } else {
-            console.log("5번");
+            console.log("6 . "+req.session.token);
             resObj.msg = "아이디 또는 비밀번호를 확인하세요.";
         }
     }
